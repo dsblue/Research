@@ -1,8 +1,6 @@
 DATAFILE = ARGV[0].to_s
-POPSIZE = ARGV[1].to_i
-
-LEN = ARGV[2].to_i
-GC_RATIO = ARGV[3].to_f
+LEN = ARGV[1].to_i
+GC_RATIO = ARGV[2].to_f
 
 class Array
   def shuffle!
@@ -120,38 +118,84 @@ class CandidateSolution
 end
 
 
-File.open(DATAFILE, 'r') do |f1|  
-  ## Build the word hash
-  
+#################################################################
+
+WORDS = Hash.new
+HYPEREDGES = Hash.new
+
+puts "Loading dataset from #{DATAFILE}..."
+puts "Creating Hyperedges"
+
+File.open(DATAFILE, 'r') do |f1|    
   while line = f1.gets  
     line.split(/[\.?!;]/).each { |sentence| 
-      p "--------"
-      sentence.split.each { |word|
-        p word
-      }      
+      a = sentence.split
+      a.map! { |x| x.upcase }
+
+      a.each { |word|
+        if (WORDS[word]) 
+          WORDS[word] += 1
+        else 
+          WORDS[word] = 1
+        end
+      }
+
+      i = 0
+      while ((i+2) < a.size) 
+        #build an edge
+        edge = [a[i], a[i+1], a[i+2]]
+        if (HYPEREDGES[edge]) 
+          HYPEREDGES[edge] += 1
+        else
+          HYPEREDGES[edge] = 1
+        end
+        i += 1 
+      end
     }
-    
-#    puts line  
   end  
 end  
 
+sorted_words = WORDS.to_a.sort_by { |x| -x[1] }
+sorted_edges = HYPEREDGES.to_a.sort_by { |x| -x[1] }
+
+puts "Found #{sorted_words.size} words"
+puts "Found #{HYPEREDGES.size} hyperedges"
+puts "Listing top 10 hyperedges"
+for i in (0..9) 
+  puts "  #{sorted_edges[i][0].join(' ')}: #{sorted_edges[i][1]}"
+end
+
+puts "Creating #{2*sorted_words.size} sequences of length #{LEN}"
+puts "Using a GC Ratio of #{GC_RATIO}"
 
 population = Array.new
 
-for i in (0..POPSIZE) 
-  population[i] = CandidateSolution.new
+while population.size < (2 * sorted_words.size)
+  population << CandidateSolution.new
+  population.uniq!
 end
-
-population.uniq!
 
 ## Todo remove reverse comps 
 
 # Sort by free energy
-population = population.sort_by { |x| x.g }
+sorted_seq = population.sort_by { |x| x.g }
 
-population.each { |s| puts "#{s.to_s} , #{s.g}" }
+#population.each { |s| puts "#{s.to_s} , #{s.g}" }
 
-#p sol
-#p sol.reverse_comp.join
+puts "Created nucleotide sequences"
+puts "Listing top 10, sorted by estimated free energy (kJ/mol):"
+for i in (0..9) 
+  puts "  #{sorted_seq[i]}, free energy #{sorted_seq[i].g}"
+end
 
+puts "Assigning nucleotide sequences to Hyperedges:"
+
+dict = Hash.new
+sorted_words.each_with_index { |w,i|
+  dict[w[0]] = sorted_seq[i]
+}
+
+HYPEREDGES.each { |e,w| 
+  puts "#{e.join(' ')} (#{w}):\t #{dict[e[0]]}#{dict[e[1]]}#{dict[e[1]]}#{dict[e[2]]}"
+}
 
