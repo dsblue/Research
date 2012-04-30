@@ -1,1 +1,6 @@
+
+## To clean up input file:
+cat alwayssuny.raw | sed 's/^.*://g' | tr -d '\n' | sed 's/,/ /g; s/-/ /g; s/–/ /g; s/…//g; s/“//g; s/”//g;  s/"//g; s#<##g; s#>##g; s#\[##g; s#\]##g; s#(##g; s#)##g ' 
+
+## To run script
 ruby hypernetwork.rb always_sunny 10 0.5 
