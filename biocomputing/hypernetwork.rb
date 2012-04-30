@@ -171,11 +171,23 @@ puts "Using a GC Ratio of #{GC_RATIO}"
 population = Array.new
 
 while population.size < (2 * sorted_words.size)
-  population << CandidateSolution.new
-  population.uniq!
+  sol = CandidateSolution.new
+  
+  ## Remove reverse comps 
+  rev = sol.reverse_comp
+  found = false
+  population.each { |s| 
+    if (rev == s.solution) 
+      found = true
+    end
+  }
+  
+  if (!found)
+    population << sol
+    population.uniq!
+  end
 end
 
-## Todo remove reverse comps 
 
 # Sort by free energy
 sorted_seq = population.sort_by { |x| x.g }
