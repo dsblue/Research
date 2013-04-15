@@ -1,0 +1,17 @@
+http://www.acoustics.hut.fi/u/mairas/UltimateLatexMakefile/
+
+Drop the downloaded file in your LaTeX source directory, and run make. That should give you a nice DVI file.
+
+The following options are available:
+
+make pdf
+Make PDF files out of all tex documents in the directory.
+make ps
+Make postscript files out of all tex documents in the directory.
+make clean
+Remove all the compilation results and intermediate files.
+make foo.pdf
+Make only foo.pdf, ignoring other source files in the directory.
+If you prefer not to have the makefile complain about EPS file dependencies, comment the last lines out of the file. If you use the hyperref package, internal PDF hyperlinks will be automatically created.
+
+
