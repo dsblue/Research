@@ -1,6 +1,6 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-\documentclass[final,conference,10pt]{IEEEtran}
-%\documentclass[final]{article}
+%\documentclass[final,conference,10pt]{IEEEtran}
+\documentclass[final]{article}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{color,soul}
@@ -12,8 +12,8 @@
 \begin{document}
 \maketitle
 
-%% References:
-%% {Vasserman2013,Vampire Attacks: Draining Life from Wireless Ad Hoc Sensor Networks 
+%% References Cheat Sheet:
+% {Vasserman2013,Vampire Attacks: Draining Life from Wireless Ad Hoc Sensor Networks 
 % {Bojinov2010,The emergence of cross channel scripting
 % {Catal2011,Software fault prediction: A literature review and current trends
 % {Mahdavi-Hezavehi2013, Variability in quality attributes of service-based software system
@@ -29,13 +29,13 @@
 % {Mehmood2011,Incorporating Security in Embedded System–A critical analysis
 
 \section{Introduction} 
-A high degree of security in embedded computer systems, specifically those used in life critical or biomedical devices, is a particularly important design goal.  Embedded systems are designed \hl{for} hostile environments and operate with uniquely constrained resources. This makes embedded systems a vulnerable class of software that requires a specific set of security processes and guidelines that has not been well defined.   
+A high degree of security in embedded computer systems, specifically those used in life critical or biomedical devices, is a particularly important design goal.  Embedded systems are designed for hostile environments and operate with uniquely constrained resources. This makes embedded systems a vulnerable class of software that requires a specific set of security processes and guidelines that has not been well defined.   
 
 There is ample research on effective software security practices for general purpose computing platforms and it is likely that many of those practices can also be applied to embedded systems. This paper provides a systematic review of recent literature related to embedded software security and general computer security trends. Issues specific to embedded software are described and prioritized based on common security risk analysis metrics.  Special emphasis is placed on wireless sensor networks and therefore literature related to low power and resource constrained wireless security will also be included.  Also, general security trends that may apply to embedded systems but seem to be under researched by the literature are presented as possible areas of future research.  The goal of this paper is to collect and report the security metrics and methods that have driven the development of secure system and application software which may also apply to embedded software.
 
 Security researchers and practitioners can utilize these results when designing, targeting, or interfacing embedded software and platforms.  Those readers with experience in general software security practices gain perspective on where embedded systems fit into the broader security landscape.  Embedded software engineers are presented a review of security best practices and references for use during implementation.
 
-The rest of this paper is organized as follows. Section 2, Background and Related Work, provides a background on embedded systems and the general security challenges that affect the design, implementation, and maintenance of software running on those systems. Section 3, Methodology, details the literature search, selection, and filtering process that was followed while performing this review. Section 4, Analysis and Results, contains the results of this review organized by TBD. Section 5, Conclusions, provides a summary of the lessons learned and includes areas for further research.
+The rest of this paper is organized as follows. Section 2, Background and Related Work, provides a background on embedded systems and the general security challenges that affect the design, implementation, and maintenance of software running on those systems. Section 3, Methodology, details the literature search, selection, and filtering process that was followed while performing this review. Section 4, Analysis and Results, contains the results of this review organized by \hl{TBD}. Section 5, Conclusions, provides a summary of the lessons learned and includes areas for further research.
 
 \section{Background and Related Work}
 Miniaturization of computing hardware continues to drive the expansion of software into more and more areas of our lives.  This notably includes critical infrastructure, personal health, transportation devices, and diagnostic tools.  The software that resides on devices such as these provide control and communication interfaces for the underlying hardware.  The hardware that is included in these systems varies significantly between application domains but some generalizations can be made.  The diversity of targeted devices is one of the reasons why embedded software security is particularly difficult.
@@ -55,18 +55,18 @@ Device drivers and protocol stacks are often developed in an ad-hoc and custom f
 The systems themselves are often in hostile environments. The software, hardware and interfaces are all in the attackers hands which makes reverse engineering easier than cases where the software is running on a remote server.  Embedded systems must be designed to be tamper proof to prevent modification or discovery of sensitive data.
 \item 
 Embedded systems tend to have low power and computing overhead which makes any security features a hard sell. Business processes may not be in place to properly prioritize software security.
-Low energy, battery powered systems such as implantable or remote sensors are also subject to denial of service attacks involving energy draining.  An increase in the duty cycle of high power features could lower field life these systems. \cite{Catal2011}
+Low energy, battery powered systems such as implantable or remote sensors are also subject to denial of service attacks involving energy draining.  An increase in the duty cycle of high power features could lower field life these systems. \cite{Vasserman2013}
 \item 
-Distributed embedded systems, such as wireless sensor networks, often operate in hostile environments where communication channels (wired and wireless) cannot be considered secure.  This necessitates encryption for command, control and communication. However, proper encryption may not be available on the embedded platform in use. \cite{Catal2011}
+Distributed embedded systems, such as wireless sensor networks, often operate in hostile environments where communication channels (wired and wireless) cannot be considered secure.  This necessitates encryption for command, control and communication. However, proper encryption may not be available on the embedded platform in use. \cite{Bojinov2010}
 \end{itemize}
 
 \subsection{Approaches to Embedded Security}
 
-For many years high security was not seen as essential for these types of devices because physical barriers could be placed around the computing hardware and there were few interfaces by which a would be attacker could access the system.  This is no longer the case.  Current embedded systems require networking and configuration interfaces that are, many times, user accessible.  This is especially true for network enabled devices.  These contain many of the same vulnerabilities as traditional web servers but often lack the robust security emphasis that is afforded traditional web servers. [5]
+For many years high security was not seen as essential for these types of devices because physical barriers could be placed around the computing hardware and there were few interfaces by which a would be attacker could access the system.  This is no longer the case.  Current embedded systems require networking and configuration interfaces that are, many times, user accessible.  This is especially true for network enabled devices.  These contain many of the same vulnerabilities as traditional web servers but often lack the robust security emphasis that is afforded traditional web servers. \cite{Kumar2012}
 
 \subsection{Wireless Sensor Networks}
 
-Wireless sensor networks (WSN) comprise special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.[2][4]  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
+Wireless sensor networks (WSN) comprise special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.\cite{Bojinov2010,Mahdavi-Hezavehi2013}  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
 
 \section{Methodology}
 The main goal of this study is to provide the reader with the software security practices that have been reported by literature to apply well to embedded system software design and development.  However, there are several sub-goals that aid in meeting that objective.  
@@ -109,7 +109,7 @@ Many traditional features of embedded systems continue to affect current softwar
 
 \subsection{Primary Sources}
 
-Peer reviewed journals provide the raw data for the analysis included in the following section of this paper, Section 4.  Access to the EBSCO Host database provides the searching capability utilized to find candidate papers.  All peer reviewed journals are included in the search space, but the publication date is limited to the years 2009 through 2013.  How to limit the results to a manageable amount??
+Peer reviewed journals provide the raw data for the analysis included in the following section of this paper, Section 4.  Access to the EBSCO Host database provides the searching capability utilized to find candidate papers.  All peer reviewed journals are included in the search space, but the publication date is limited to the years 2009 through 2013.  \hl{How to limit the results to a manageable amount??}
 
 Two sets of search results are included for analysis: embedded software security specific articles and general software security articles filtered by key constraints.  The following search criteria provide the articles under review. 
 
@@ -117,13 +117,16 @@ Two sets of search results are included for analysis: embedded software security
 
 IN Abstract:
 
+\begin{center}
 (embedded AND software) AND (security OR secure) AND (metric OR protect OR attack OR vulnerability)
+\end{center}
 
 \textit{General Software Security with Constraints}
 
-	IN Abstract:
-
-	software AND (security OR secure) AND ("real-time" OR mesh OR "low power") NOT (embedded)
+IN Abstract:
+\begin{center}
+software AND (security OR secure) AND ("real-time" OR mesh OR "low power") NOT (embedded)
+\end{center}
 
 \subsection{Selection / Rejection Criteria}
 
@@ -131,7 +134,7 @@ Literature returned by the previous search criteria is further filtered based on
 
 \subsection{Analysis Methodology}
 
-Each paper that is selected in the previous step is analysed for protection schemes and vulnerabilities.  A table of vulnerabilities is included in the analysis section that includes a brief description and the number of unique papers that reference the vulnerability. A score is assigned to each vulnerability that represents its relative impact to system security. The score is based on the Common Vulnerability Scoring System (CVSS) defined by .  Any protection or mitigation schemes that are reported in the literature under review are provided for the applicable vulnerabilities listed in the table.  
+Each paper that is selected in the previous step is analysed for protection schemes and vulnerabilities.  A table of vulnerabilities is included in the analysis section that includes a brief description and the number of unique papers that reference the vulnerability. A score is assigned to each vulnerability that represents its relative impact to system security. The score is based on the Common Vulnerability Scoring System (CVSS) defined by the National Institute of Standards and Technology\footnote{See http://nvd.nist.gov/cvss.cfm for more information on the NVD Common Vulnerability Scoring System Support V2}.  Any protection or mitigation schemes that are reported in the literature under review are provided for the applicable vulnerabilities listed in the table.  
 
 \bibliographystyle{IEEEtran} % Bibliography style file, IEEEtran.bst
 \bibliography{embeddedsecurity}
