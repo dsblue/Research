@@ -1,6 +1,6 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-\documentclass[final,conference,10pt]{IEEEtran}
-%\documentclass[final]{article}
+%\documentclass[final,conference,10pt]{IEEEtran}
+\documentclass[draftcls,onecolumn,conference,12pt]{IEEEtran}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{color,soul}
@@ -113,11 +113,11 @@ The most obvious trend in embedded systems is increased connectivity.  The so-ca
 
 Another trend in embedded systems is wireless connectivity.  CPU and battery technology have progressed to the point where it is feasible to include wireless communication features to small, low power, low energy, and low cost sensors and controls.  Common wireless technologies include Zigbee, Bluetooth (BTLE), and 802.11 WiFi.  Each of these protocols have specialized profiles for low energy or medical applications.  
 
-Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems to operate on mesh networks.  Specifically, a dynamically managed mesh network of wireless nodes can lead to a more robust and fault tolerant network (See Figure \ref{fig_sim}).  Also, the network can be self-assembling which means that prior knowledge of the final node positions is not needed. 
+Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems to operate on mesh networks.  Specifically, a dynamically managed mesh network of wireless nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig_sim}).  Also, the network can be self-assembling which means that prior knowledge of the final node positions is not needed. 
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{topology.png}
+\includegraphics[width=2.5in]{topology}
 % where an .eps filename suffix will be assumed under latex, 
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
@@ -179,6 +179,11 @@ Table \ref{tab:vul_summary} gives a list of vulnerabilities found in the literat
 \begin{tabular}{ | p{5cm} | l | l | }
 \hline
  Vulnerability Description 		& References & Impact	\\ \hline
+ Stack Smashing					& 15 & 100 				\\ \hline
+ Cross Channel Scripting			& 3 & 100				\\ \hline
+ Side Channel Attacks 			& 13 & 100 				\\ \hline
+ Injection Attacks				& 5 & 100 				\\ \hline
+ Insecure APIs 					& 7 & 100				\\ \hline
  Stack Smashing					& 15 & 100 				\\ \hline
  Cross Channel Scripting			& 3 & 100				\\ \hline
  Side Channel Attacks 			& 13 & 100 				\\ \hline
