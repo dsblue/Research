@@ -1,15 +1,29 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-%\documentclass[final,conference,10pt]{IEEEtran}
-\documentclass[final]{article}
+\documentclass[final,conference,10pt]{IEEEtran}
+%\documentclass[final]{article}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{color,soul}
 
-\author{Nathan Palmer (ntp1@msstate.edu)}
-\date{\today}
-\title{Literature Review of Embedded Software Security Vulnerability Protection and Mitigation Schemes}
+%% \date{\today}
+
 
 \begin{document}
+
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+\title{Literature Review of Embedded Software Security Vulnerability Protection and Mitigation Schemes}
+
+% author names and affiliations
+% use a multiple column layout for up to three different
+% affiliations
+\author{\IEEEauthorblockN{Nathan Palmer}
+\IEEEauthorblockA{Department of Electrical and\\Computer Engineering\\
+Mississippi State University\\
+Starkville, Mississippi 39762\\
+Email: ntp1@msstate.edu}}
+
 \maketitle
 
 %% References Cheat Sheet:
@@ -28,7 +42,13 @@
 % {Liu2012,Memory monitor module for embedded systems,
 % {Mehmood2011,Incorporating Security in Embedded System–A critical analysis
 
+\begin{abstract}
+%\boldmath
+The abstract goes here.
+\end{abstract}
+
 \section{Introduction} 
+
 A high degree of security in embedded computer systems, specifically those used in life critical or biomedical devices, is a particularly important design goal.  Embedded systems are designed for hostile environments and operate with uniquely constrained resources. This makes embedded systems a vulnerable class of software that requires a specific set of security processes and guidelines that has not been well defined.   
 
 There is ample research on effective software security practices for general purpose computing platforms and it is likely that many of those practices can also be applied to embedded systems. This paper provides a systematic review of recent literature related to embedded software security and general computer security trends. Issues specific to embedded software are described and prioritized based on common security risk analysis metrics.  Special emphasis is placed on wireless sensor networks and therefore literature related to low power and resource constrained wireless security will also be included.  Also, general security trends that may apply to embedded systems but seem to be under researched by the literature are presented as possible areas of future research.  The goal of this paper is to collect and report the security metrics and methods that have driven the development of secure system and application software which may also apply to embedded software.
@@ -66,7 +86,7 @@ For many years high security was not seen as essential for these types of device
 
 \subsection{Wireless Sensor Networks}
 
-Wireless sensor networks (WSN) comprise special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.\cite{Bojinov2010,Mahdavi-Hezavehi2013}  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
+Wireless sensor networks (WSN) comprise a special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.\cite{Bojinov2010,Mahdavi-Hezavehi2013}  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
 
 \section{Methodology}
 The main goal of this study is to provide the reader with the software security practices that have been reported by literature to apply well to embedded system software design and development.  However, there are several sub-goals that aid in meeting that objective.  
@@ -93,9 +113,17 @@ The most obvious trend in embedded systems is increased connectivity.  The so-ca
 
 Another trend in embedded systems is wireless connectivity.  CPU and battery technology have progressed to the point where it is feasible to include wireless communication features to small, low power, low energy, and low cost sensors and controls.  Common wireless technologies include Zigbee, Bluetooth (BTLE), and 802.11 WiFi.  Each of these protocols have specialized profiles for low energy or medical applications.  
 
-Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems to operate on mesh networks.  Specifically, a dynamically managed mesh network of wireless nodes can lead to a more robust and fault tolerant network.  Also, the network can be self-assembling which means that prior knowledge of the final node positions is not needed. 
+Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems to operate on mesh networks.  Specifically, a dynamically managed mesh network of wireless nodes can lead to a more robust and fault tolerant network (See Figure \ref{fig_sim}).  Also, the network can be self-assembling which means that prior knowledge of the final node positions is not needed. 
 
-[bus topology image here]
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{topology.png}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{bus topology image here}
+\label{fig_sim}
+\end{figure}
 
 Another trend in embedded system design is field upgradeable firmware.  Along with connectivity comes the desire to provide updates and patches to deployed embedded software (firmware).  This functionality can apply to applications and features or to the entire software suite on the device, including device drivers and system software.
 
@@ -135,6 +163,33 @@ Literature returned by the previous search criteria is further filtered based on
 \subsection{Analysis Methodology}
 
 Each paper that is selected in the previous step is analysed for protection schemes and vulnerabilities.  A table of vulnerabilities is included in the analysis section that includes a brief description and the number of unique papers that reference the vulnerability. A score is assigned to each vulnerability that represents its relative impact to system security. The score is based on the Common Vulnerability Scoring System (CVSS) defined by the National Institute of Standards and Technology\footnote{See http://nvd.nist.gov/cvss.cfm for more information on the NVD Common Vulnerability Scoring System Support V2}.  Any protection or mitigation schemes that are reported in the literature under review are provided for the applicable vulnerabilities listed in the table.  
+
+\section{Analysis and Results}
+
+Table \ref{tab:vul_summary} gives a list of vulnerabilities found in the literature.
+
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{Summary of Vulnerabilities}
+\label{tab:vul_summary}
+\centering
+\begin{tabular}{ | p{5cm} | l | l | }
+\hline
+ Vulnerability Description 		& References & Impact	\\ \hline
+ Stack Smashing					& 15 & 100 				\\ \hline
+ Cross Channel Scripting			& 3 & 100				\\ \hline
+ Side Channel Attacks 			& 13 & 100 				\\ \hline
+ Injection Attacks				& 5 & 100 				\\ \hline
+ Insecure APIs 					& 7 & 100				\\ \hline
+\end{tabular}
+\end{table}
+
+\section{Conclusions}
+
+Put conclusions here....
 
 \bibliographystyle{IEEEtran} % Bibliography style file, IEEEtran.bst
 \bibliography{embeddedsecurity}
