@@ -199,5 +199,137 @@ Put conclusions here....
 \bibliographystyle{IEEEtran} % Bibliography style file, IEEEtran.bst
 \bibliography{embeddedsecurity}
 
+\pagebreak
+
+\section{Notes}
+Secure design guidelines
+
+Defects as vulnerabilities 
+
+Where is there overlap between embedded sw and web/desktop/enterprise
+
+Sensor challenges
+
+Traditionally, embedded system firmware designers did not have to consider security vulnerabilities to the extent that application software developers did.  
+
+It is important that the lessons learned from traditional Web and desktop application security don't have to be relearned as embedded systems become more critical and exposed.
+
+Lots of work on wireless security
+
+This paper provides a literature review of the specific constraints and vulnerabilities that apply to typical embedded systems and also provides a survey of proposed security solutions and mitigations. 
+
+
+side channel attacks
+
+		data at rest encryption		
+
+		UI requires remote protocol interface
+
+		Strong Encryption and Correct Design are Not Enough: Protecting Your Secure System from Side Channel Attacks.
+
+		Duku and Flame
+
+http://www.embedded.com/design/safety-and-security/4304104/Security-fundamentals-for-embedded-software
+
+		Stuxnet is a computer worm discovered in June 2010 that is believed to have been created by the United States and Israel to attack Iran's nuclear facilities. Stuxnet initially spreads via Microsoft Windows, and targets Siemens industrial software and equipment. While it is not the first time that hackers have targeted industrial systems, it is the first discovered malware that spies on and subverts industrial systems, and the first to include a programmable logic controller (PLC) rootkit.
+
+		They are resource-constrained and have less "room" to compensate for CPU- or memory-robbing attacks. As a result, they are easily susceptible to denial of service attacks.
+
+Their performance can be slowed by cryptography. To speed performance, embedded developers do not include secure networking protocols on embedded devices as often as they do on their desktop counterparts.
+
+Their firmware can be changed. Knowledgeable users can swap out existing embedded firmware and replace it with an operating system of their choice.
+
+They are only intermittently connected to a network. Inconsistent network connections reduce the likelihood that security patches will be kept up-to-date, and increase the chance that the device will access an unsecure network.
+
+They are easy to steal due to their small physical size. In theory, an attacker could swap one embedded device for another and load malicious information into a system.
+
+
+	relevant terminology 
+
+		threat analysis (Klocwork paper)
+
+		abuse cases
+
+		attack window
+
+		analog-to-digital-converters (ADCs) for data acquisition , ADC Code Injector
+
+		stack smashing, buffer overflows
+
+		input sanitation
+
+		Dougherty, C., K. Sayre, R.C. Seacord, D. Svoboda, and K. Togashi. "Secure Design Patterns," CERT Program, Software Engineering Institute, Carnegie Mellon University, Pittsburgh PA, Technical Report CMU/SEI-2009-TR-101, ESC-TR-2009-010.
+
+specific security constraints and requirements
+
+		uninitialized data
+
+		 buffer overflows
+
+use of dangling pointers
+
+injection flaws
+
+known insecure APIs and libraries
+
+
+\section{Journals}
+
+Science of Computer Programming
+
+Journal of Computer Security
+
+European Journal of Control
+
+Design Automation for Embedded Systems
+
+Journal of Embedded Computing
+
+Formal Methods in System Design
+
+Journal of Parallel and Distributed Computing
+
+International Journal of Parallel Programming
+
+Real-Time Systems
+
+International Journal on Software Tools for Technology Transfer
+
+EURASIP Journal on Embedded Systems (EURASIP JES)
+
+EURASIP Journal on Information Security (EURASIP JIS)
+
+EURASIP Journal on Wireless Communications and Networking (EURASIP JWCN)
+
+ACM Transactions on Design Automation of Electronic Systems (TDOAES)
+
+ACM Transactions on Embedded Computing Systems (TECS)
+
+ACM Transactions on Sensor Networks (TOSN)
+
+IEEE/ACM Transactions on Networking
+
+IEEE Computer Architecture Letters (CAL)
+
+IEEE Embedded System Letters
+
+IEEE Transactions on Computer Aided Design (TCAD)
+
+IEEE Transactions on Computers (TC)
+
+IEEE Transactions on Dependable and Secure Computing (TDSC)
+
+IEEE Transactions on Industrial Informatics
+
+IEEE Transactions on Mobile Computing (TMC)
+
+IEEE Transactions on Parallel and Distributed Systems (TPDS)
+
+IEEE Transactions on Software Engineering (TSE)
+
+IEEE Transactions on Very Large Scale Integration (VLSI) Systems
+
+
+
 \end{document}
 
