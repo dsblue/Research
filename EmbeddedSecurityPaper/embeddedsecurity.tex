@@ -1,6 +1,6 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-%\documentclass[final,conference,10pt]{IEEEtran}
-\documentclass[draftcls,onecolumn,conference,12pt]{IEEEtran}
+\documentclass[final,conference,10pt]{IEEEtran}
+%\documentclass[draftcls,onecolumn,conference,12pt]{IEEEtran}
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{color,soul}
@@ -103,17 +103,17 @@ Finally, the sources which are selected for analysis are used to synthesize an a
 
 \subsection{Research Questions and Hypotheses}
 
-The hypothesis this study hopes to support is that many existing software security practices can be successfully applied to embedded software to increase security in embedded systems but are not included in the literature targeting embedded system research.  The goals listed in the previous section outline the approach to confirm this hypothesis.  A further research question that is addressed is: "Where are the areas in the field of embedded software security that are high priority but under researched". The following section provides the results of some of those goals and a detailed plan for meeting performing the final analysis.
+The hypothesis this study hopes to support is that many existing software security practices can be successfully applied to embedded software to increase security in embedded systems but are not included in the literature targeting embedded system research.  The goals listed in the previous section outline the approach to confirm this hypothesis.  A further research question that is addressed is: "Where are the areas in the field of embedded software security that are high priority but under researched". The following section provides the results of some of those goals and a detailed plan for performing the final analysis.
 
-\subsection{Embedded System Trends}
+\subsection{Current Embedded System Trends}
 
-Current trends in embedded software are summarised in this section in an effort to provide a context for a more thorough literature search and also to define some relevant terminology.  This information was mainly obtained from the trade publication Embedded Systems Design, the blogging aggregator Embedded Gurus, and Wikipedia.  
+Current trends in embedded software development are summarised in this section in an effort to provide a context for a more thorough literature search and also to define some relevant terminology.  Most of this information was obtained from the trade publication Embedded Systems Design, the blogging portal site Embedded Gurus, and Wikipedia.  
 
-The most obvious trend in embedded systems is increased connectivity.  The so-called internet of things is seen by many as the next iteration of the internet. Except instead of being populated by data and content entered by humans, like the current internet is, the internet of things is made up of physical assets that provide streams of data (biomedical, environmental, logistical, etc.) from smart sensors.  25 billion such devices are expected to be connected by 2015. Largely due to this prediction, IPV6 network addressing was developed to increase the original Internet’s theoretical maximum of 4.3 billion unique addresses.  
+The most obvious trend in the field of embedded systems is increased connectivity.  The so-called "internet of things" is seen by many as the next iteration of the internet. Instead of being populated by data and content entered by humans, like the current internet is, the "internet of things" is made up of physical assets that provide streams of data (environmental, biomedical, logistical, etc.) from smart sensors.  25 billion such embedded software devices are expected to be connected by 2015. Largely due to this prediction, more sophisticated networking protocols and hardware must be included on next generation embedded systems.  One example of this is IPV6 network addressing which was developed to increase the maximum number IP addressable internet nodes above 4.3 billion unique addresses.  
 
-Another trend in embedded systems is wireless connectivity.  CPU and battery technology have progressed to the point where it is feasible to include wireless communication features to small, low power, low energy, and low cost sensors and controls.  Common wireless technologies include Zigbee, Bluetooth (BTLE), and 802.11 WiFi.  Each of these protocols have specialized profiles for low energy or medical applications.  
+Another trend in embedded systems is wireless connectivity.  CPU and battery technology have progressed to the point where it is feasible to include wireless communication features to small, low power, low energy, and low cost sensors and controls.  Examples of common wireless technologies include Zigbee, Bluetooth (BTLE), and 802.11 WiFi.  Each of these protocols have specialized profiles for low energy and medical applications.
 
-Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems to operate on mesh networks.  Specifically, a dynamically managed mesh network of wireless nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig_sim}).  Also, the network can be self-assembling which means that prior knowledge of the final node positions is not needed. 
+Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems that operate on mesh networks.  Specifically, a dynamically managed mesh network of wirelessly connected nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig_sim}).  Also, the network can be self-assembling.  This makes it easier to deploy networks of sensors into environments where it is difficult to predict exactly where nodes will be placed and which nodes will ultimately be connected to one another.
 
 \begin{figure}[!t]
 \centering
@@ -125,40 +125,39 @@ Network topologies are also an important research area for embedded systems.  Wi
 \label{fig_sim}
 \end{figure}
 
-Another trend in embedded system design is field upgradeable firmware.  Along with connectivity comes the desire to provide updates and patches to deployed embedded software (firmware).  This functionality can apply to applications and features or to the entire software suite on the device, including device drivers and system software.
+Another trend in embedded system design is to include field upgradeable firmware.  Along with connectivity comes the desire to provide updates and patches to deployed embedded software (firmware).  This functionality can apply to individual applications and features or to the entire software suite on the device, including device drivers and system software.  Depending on the implementation, updates may require user intervention or may be pushed to the device from a vendor.  Ensuring the integrity of field installed firmware is an active area of research.
 
-Traditionally, the majority of development for embedded software was done in low-level languages such as C or CPU architecture specific assembly code.  While these languages are still dominant, there is a trend towards using higher level languages for all but the lowest level functionality.  Some popular languages taking a foothold in embedded software development are Embedded Java and C++.
+Traditionally, the majority of development for embedded software was done in low-level languages such as C or in architecture specific assembly code.  While these languages are still dominant, there is a trend towards using higher level languages for all but the lowest level functionality.  Some popular languages taking a foothold in embedded software development are Embedded Java and Embedded C++. Features such as type safety and garbage collection are new to many embedded software engineers.
 
-Consolidation of functionality is another feature of emerging embedded systems.  Many embedded systems consist of a single system-on-a-chip (SoC) that includes not only the CPU, RAM and ROM components, but interface hardware as well.  Many include hardware for efficient network connectivity such as WIFi, Ethernet, NFC/RFID, cellular and Bluetooth physical layer devices.  Also popular are USB layer hardware, encryption accelerators, analog to digital converters, and digital signal processing (DSP) hardware.
+Consolidation of functionality is another feature of emerging embedded systems.  Many embedded systems consist of a single system-on-a-chip (SoC) that includes not only the CPU, RAM and ROM components, but interface hardware as well.  Many include hardware for efficient network connectivity such as WIFi, Ethernet, NFC/RFID, cellular and Bluetooth physical layer devices.  Also popular are USB layer hardware, encryption accelerators, analog to digital converters, and digital signal processing (DSP) hardware. 
 
 \subsection{Traditional Embedded System Features}
 
-Many traditional features of embedded systems continue to affect current software design and implementation.  A reduced energy budget continues to be a constraint for battery powered devices and leads to other constraints such as low processor clock speeds and reduced memory.  Also, it continues to be difficult to provide general purpose embedded software because the code is heavily dependent on the underlying CPU platforms.  Platforms can vary in memory architecture, word size, instruction set,  floating point support, and register sets.  Real-time performance (guaranteed bounds on latency) constraints are still a feature of many embedded systems. Debugging and testing is complicated by the lack of an underlying general purpose operating system and the sensitivity of the system to timing variations.  It often requires the use of sophisticated software emulators and simulators.   Often specialized hardware is also required to debug or profile the system.
+Many traditional features of embedded systems continue to affect current software design and implementation.  A reduced energy budget continues to be a constraint for battery powered devices and leads to other constraints such as low processor clock speeds and reduced system memory.  Also, it continues to be difficult to provide general purpose embedded software because the code is heavily dependent on the underlying CPU platform.  Platforms can vary in memory architecture, word size, instruction set, floating point support, and register sets.  Real-time performance (guaranteed bounds on latency) constraints are still a requirement of many embedded systems. Finally, debugging and testing is complicated by the lack of an underlying general purpose operating system and the sensitivity of the system to timing variations.  It often requires the use of sophisticated software emulators and simulators.  Often specialized hardware is also required to debug or profile the system.
 
 \subsection{Primary Sources}
 
-Peer reviewed journals provide the raw data for the analysis included in the following section of this paper, Section 4.  Access to the EBSCO Host database provides the searching capability utilized to find candidate papers.  All peer reviewed journals are included in the search space, but the publication date is limited to the years 2009 through 2013.  \hl{How to limit the results to a manageable amount??}
+Peer reviewed journals provide the raw data for the analysis included in the following section of this paper, Section 4.  Access to the EBSCO Host database provides the searching capability utilized to find candidate papers.  All peer reviewed journals are included in the search space, but the publication date is limited to the years 2009 through 2013.  \hl{How to further limit the results to a manageable amount??}
 
 Two sets of search results are included for analysis: embedded software security specific articles and general software security articles filtered by key constraints.  The following search criteria provide the articles under review. 
 
 \textit{Embedded Systems Software security}
 
-IN Abstract:
-
+Find Articles where the abstract contains:
 \begin{center}
 (embedded AND software) AND (security OR secure) AND (metric OR protect OR attack OR vulnerability)
 \end{center}
 
 \textit{General Software Security with Constraints}
 
-IN Abstract:
+Find Articles where the abstract contains:
 \begin{center}
 software AND (security OR secure) AND ("real-time" OR mesh OR "low power") NOT (embedded)
 \end{center}
 
 \subsection{Selection / Rejection Criteria}
 
-Literature returned by the previous search criteria is further filtered based on the relevance of the data to the research questions defined above.  For the "Embedded Systems Software Security" results this process is accomplished by reading the abstracts and selecting any papers that show improved security due to novel protection schemes. For the "General Software Security with Constraints" results, the papers are filtered by reading the abstract and comparing the scope of the study to embedded system criteria and trends as they are described earlier in this section. Any papers that show relevant protection schemes are included in the final analysis.
+Literature returned by the previous search criteria is further filtered based on the relevance of its results to the research questions defined above.  For the \textit{Embedded Systems Software Security} results this process is accomplished by reading the abstracts and selecting any papers that show improved security due to novel protection schemes. For the \textit{General Software Security with Constraints} results, the papers are filtered by reading the abstract and comparing the scope of the study to embedded system criteria and trends as they are described earlier in this section. Any papers that show relevant protection schemes are included in the final analysis.
 
 \subsection{Analysis Methodology}
 
@@ -179,11 +178,6 @@ Table \ref{tab:vul_summary} gives a list of vulnerabilities found in the literat
 \begin{tabular}{ | p{5cm} | l | l | }
 \hline
  Vulnerability Description 		& References & Impact	\\ \hline
- Stack Smashing					& 15 & 100 				\\ \hline
- Cross Channel Scripting			& 3 & 100				\\ \hline
- Side Channel Attacks 			& 13 & 100 				\\ \hline
- Injection Attacks				& 5 & 100 				\\ \hline
- Insecure APIs 					& 7 & 100				\\ \hline
  Stack Smashing					& 15 & 100 				\\ \hline
  Cross Channel Scripting			& 3 & 100				\\ \hline
  Side Channel Attacks 			& 13 & 100 				\\ \hline
