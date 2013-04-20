@@ -1,5 +1,5 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-\documentclass[final,conference,10pt]{IEEEtran}
+\documentclass[final,conference,11pt]{IEEEtran}
 %\documentclass[draftcls,onecolumn,conference,12pt]{IEEEtran}
 \usepackage{graphicx}
 \usepackage{mathtools}
@@ -44,7 +44,7 @@ Email: ntp1@msstate.edu}}
 
 \begin{abstract}
 %\boldmath
-The abstract goes here.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 \end{abstract}
 
 \section{Introduction} 
@@ -55,7 +55,7 @@ There is ample research on effective software security practices for general pur
 
 Security researchers and practitioners can utilize these results when designing, targeting, or interfacing embedded software and platforms.  Those readers with experience in general software security practices gain perspective on where embedded systems fit into the broader security landscape.  Embedded software engineers are presented a review of security best practices and references for use during implementation.
 
-The rest of this paper is organized as follows. Section 2, Background and Related Work, provides a background on embedded systems and the general security challenges that affect the design, implementation, and maintenance of software running on those systems. Section 3, Methodology, details the literature search, selection, and filtering process that was followed while performing this review. Section 4, Analysis and Results, contains the results of this review organized by \hl{TBD}. Section 5, Conclusions, provides a summary of the lessons learned and includes areas for further research.
+The rest of this paper is organized as follows. Section 2, Background and Related Work, provides a background on embedded systems and the general security challenges that affect the design, implementation, and maintenance of software running on those systems. Section 3, Methodology, details the literature search, selection, and filtering process that was followed while performing this review. Section 4, Analysis and Results, contains the results of this review organized by CVSS score and reference count. Section 5, Conclusions, provides a summary of the lessons learned and includes areas for further research.
 
 \section{Background and Related Work}
 Miniaturization of computing hardware continues to drive the expansion of software into more and more areas of our lives.  This notably includes critical infrastructure, personal health, transportation devices, and diagnostic tools.  The software that resides on devices such as these provide control and communication interfaces for the underlying hardware.  The hardware that is included in these systems varies significantly between application domains but some generalizations can be made.  The diversity of targeted devices is one of the reasons why embedded software security is particularly difficult.
@@ -115,7 +115,7 @@ The most obvious trend in the field of embedded systems is increased connectivit
 
 Another trend in embedded systems is wireless connectivity.  CPU and battery technology have progressed to the point where it is feasible to include wireless communication features to small, low power, low energy, and low cost sensors and controls.  Examples of common wireless technologies include Zigbee, Bluetooth (BTLE), and 802.11 WiFi.  Each of these protocols have specialized profiles for low energy and medical applications.
 
-Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems that operate on mesh networks.  Specifically, a dynamically managed mesh network of wirelessly connected nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig_sim}).  Also, the network can be self-assembling.  This makes it easier to deploy networks of sensors into environments where it is difficult to predict exactly where nodes will be placed and which nodes will ultimately be connected to one another.\cite{Vasserman2013}
+Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems that operate on mesh networks.  Specifically, a dynamically managed mesh network of wirelessly connected nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig:topology}).  Also, the network can be self-assembling.  This makes it easier to deploy networks of sensors into environments where it is difficult to predict exactly where nodes will be placed and which nodes will ultimately be connected to one another.\cite{Vasserman2013}
 
 \begin{figure}[!t]
 \centering
@@ -124,7 +124,7 @@ Network topologies are also an important research area for embedded systems.  Wi
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
 \caption{bus topology image here}
-\label{fig_sim}
+\label{fig:topology}
 \end{figure}
 
 Another trend in embedded system design is to include field upgradeable firmware.  Along with connectivity comes the desire to provide updates and patches to deployed embedded software (firmware).  This functionality can apply to individual applications and features or to the entire software suite on the device, including device drivers and system software.  Depending on the implementation, updates may require user intervention or may be pushed to the device from a vendor.  Ensuring the integrity of field installed firmware is an active area of research.
@@ -139,7 +139,7 @@ Many traditional features of embedded systems continue to affect current softwar
 
 \subsection{Primary Sources}
 
-Peer reviewed journals provide the raw data for the analysis included in the following section of this paper, Section 4.  Access to the EBSCO Host database provides the searching capability utilized to find candidate papers.  All peer reviewed journals are included in the search space, but the publication date is limited to the years 2009 through 2013.  \hl{How to further limit the results to a manageable amount??}
+Peer reviewed journals provide the raw data for the analysis included in the following section of this paper, Section 4.  Access to the EBSCO Host database provides the searching capability utilized to find candidate papers.  All peer reviewed journals are included in the search space, but the publication date is limited to the years 2009 through 2013.
 
 Two sets of search results are included for analysis: embedded software security specific articles and general software security articles filtered by key constraints.  The following search criteria provide the articles under review. 
 
@@ -167,7 +167,9 @@ Each paper that is selected in the previous step is analysed for protection sche
 
 \section{Analysis and Results}
 
-Table \ref{tab:vul_summary} gives a list of vulnerabilities found in the literature.
+\subsection{Embedded Software Vulnerabilities}
+
+Table \ref{tab:vul_summary} gives a representative list of vulnerability types found in the current literature.  The types are defined as follows.  System software attacks are those that exploit a weakness in the underlying operating system or device drivers.  This could be an upstream flaw that affects all instances of the operating system or it could be specific to the particular implementation. Application software attacks exploit weaknesses in the application specific code.  Side channel attacks are those that utilize communication channels that are not intended for communication.  Interface attacks exploit vulnerabilities in external interfaces such as USB and TCP/IP protocols, data collection inputs, or external memory interfaces.  Finally, software modification attacks change program instruction or data memory either partially or wholly to change the behaviour of the system.  The following sections go into more detail on each of the attack types and provide mitigation advice based on the current literature.
 
 \begin{table}[!t]
 %% increase table row spacing, adjust to taste
@@ -176,29 +178,140 @@ Table \ref{tab:vul_summary} gives a list of vulnerabilities found in the literat
 % \extrarowheight as needed to properly center the text within the cells
 \caption{Summary of Vulnerabilities}
 \label{tab:vul_summary}
+\tiny
 \centering
 \begin{tabular}{ | l | l | l | l | }
 \hline
  Vulnerability Type & Refs & CVSS Parameters & Score \\ \hline
  Sys. Software Attack	& 3 &	\verb|AV:L/AC:H/Au:S/C:C/I:C/A:C| 	& 6		\\ \hline
+ Software Modification	& 5 &	\verb|AV:L/AC:H/Au:S/C:C/I:C/A:C|	& 6		\\ \hline
+ Interface Attack		& 3	&	\verb|AV:L/AC:H/Au:N/C:N/I:C/A:C|	& 5.6	\\ \hline
+ Cross Channel Attack	& 1 &	\verb|AV:N/AC:H/Au:S/C:P/I:P/A:P|	& 4.6	\\ \hline
  App. Software Attack	& 4 &	\verb|AV:L/AC:M/Au:S/C:P/I:P/A:P|	& 4.1	\\ \hline
  Side Channel Attack		& 3 &	\verb|AV:L/AC:H/Au:N/C:C/I:N/A:N|	& 4		\\ \hline
- Cross Channel Attack	& 1 &	\verb|AV:N/AC:H/Au:S/C:P/I:P/A:P|	& 4.6	\\ \hline
- Interface Attack		& 3	&	\verb|AV:L/AC:H/Au:N/C:N/I:C/A:C|	& 5.6	\\ \hline
- Software Modification	& 5 &	\verb|AV:L/AC:H/Au:S/C:C/I:C/A:C|	& 6		\\ \hline
 \end{tabular}
 \end{table}
 
+\subsubsection{System Software Attacks}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
+\subsubsection{Application Software Attacks}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
+\subsubsection{Side Channel Attacks}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{topology}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{side channel image here}
+\label{fig:side_chan}
+\end{figure}
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Cross Channel Attacks}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Interface Attacks}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Software Modification}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsection{General Software Security Trends}
+
+This section explores some of the recent trends in software security that have been shown to apply to low power and wireless mesh networks systems. These trends also apply to many embedded systems and are included here to provide stimulate research in specific applications to embedded systems.
+
+Fifty seven (57) papers were discovered using the search methodology described in the previous section.  From those, a total of twenty-nine (29) papers were analysed to compile the following list of topics, summarised in table \ref{tab:trend_summary}.  The first column names the category and the second column give the corresponding number of recent papers that focused on that topic. Literature was discarded if the abstract did not indicate an actual application to embedded systems.  The trend categories are intentionally broad to emphasize areas that are under researched. The following sections detail  the trends and how they apply to embedded systems.
+
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{Summary of General Software Security Trends}
+\label{tab:trend_summary}
+\centering
+\begin{tabular}{ | l | l | }
+\hline
+ Software Security Trend & Reference Count \\ \hline
+ Security Model Checking			& 7	\\ \hline
+ Encryption						& 5	\\ \hline
+ Real-Time Security Monitoring	& 6	\\ \hline
+ Securing Data Channels			& 3	\\ \hline
+ Data Integrity					& 3	\\ \hline
+ Virtualization					& 2	\\ \hline	
+ Other							& 2	\\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Security Model Checking}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Encryption}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Real-Time Security Monitoring}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{topology}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{bus topology image here}
+\label{fig:monitor}
+\end{figure}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Securing Data Channels}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Data Integrity}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Virtualization}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+\subsubsection{Other}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
 \section{Conclusions}
 
 Put conclusions here....
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
 
 \bibliographystyle{IEEEtran} % Bibliography style file, IEEEtran.bst
 \bibliography{embeddedsecurity}
