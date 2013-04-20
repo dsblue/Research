@@ -86,7 +86,9 @@ For many years high security was not seen as essential for these types of device
 
 \subsection{Wireless Sensor Networks}
 
-Wireless sensor networks (WSN) comprise a special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.\cite{Bojinov2010,Mahdavi-Hezavehi2013}  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
+Wireless sensor networks (WSN) comprise a special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.\cite{Singh2011}  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.\cite{Bojinov2010,Mahdavi-Hezavehi2013,Sahoo2012}  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
+
+\hl{[Example of embedded security breach]}
 
 \section{Methodology}
 The main goal of this study is to provide the reader with software security practices that have been reported by literature to apply well to embedded system software design and development.  However, there are several sub-goals that aid in meeting that objective.  
@@ -113,7 +115,7 @@ The most obvious trend in the field of embedded systems is increased connectivit
 
 Another trend in embedded systems is wireless connectivity.  CPU and battery technology have progressed to the point where it is feasible to include wireless communication features to small, low power, low energy, and low cost sensors and controls.  Examples of common wireless technologies include Zigbee, Bluetooth (BTLE), and 802.11 WiFi.  Each of these protocols have specialized profiles for low energy and medical applications.
 
-Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems that operate on mesh networks.  Specifically, a dynamically managed mesh network of wirelessly connected nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig_sim}).  Also, the network can be self-assembling.  This makes it easier to deploy networks of sensors into environments where it is difficult to predict exactly where nodes will be placed and which nodes will ultimately be connected to one another.
+Network topologies are also an important research area for embedded systems.  Wired computer networks tend to be star, ring, or bus type networks.  However, there are advantages for wireless embedded systems that operate on mesh networks.  Specifically, a dynamically managed mesh network of wirelessly connected nodes can lead to a more robust and fault tolerant network (See \figurename \ref{fig_sim}).  Also, the network can be self-assembling.  This makes it easier to deploy networks of sensors into environments where it is difficult to predict exactly where nodes will be placed and which nodes will ultimately be connected to one another.\cite{Vasserman2013}
 
 \begin{figure}[!t]
 \centering
@@ -133,7 +135,7 @@ Consolidation of functionality is another feature of emerging embedded systems. 
 
 \subsection{Traditional Embedded System Features}
 
-Many traditional features of embedded systems continue to affect current software design and implementation.  A reduced energy budget continues to be a constraint for battery powered devices and leads to other constraints such as low processor clock speeds and reduced system memory.  Also, it continues to be difficult to provide general purpose embedded software because the code is heavily dependent on the underlying CPU platform.  Platforms can vary in memory architecture, word size, instruction set, floating point support, and register sets.  Real-time performance (guaranteed bounds on latency) constraints are still a requirement of many embedded systems. Finally, debugging and testing is complicated by the lack of an underlying general purpose operating system and the sensitivity of the system to timing variations.  It often requires the use of sophisticated software emulators and simulators.  Often specialized hardware is also required to debug or profile the system.
+Many traditional features of embedded systems continue to affect current software design and implementation.  A reduced energy budget continues to be a constraint for battery powered devices and leads to other constraints such as low processor clock speeds and reduced system memory.  Less processing power reduces options for for security features such as encryption.  Also, it continues to be difficult to provide general purpose embedded software because the code is heavily dependent on the underlying CPU platform.  Platforms can vary in memory architecture, word size, instruction set, floating point support, and register sets.  Real-time performance (guaranteed bounds on latency) constraints are still a requirement of many embedded systems. Finally, debugging and testing is complicated by the lack of an underlying general purpose operating system and the sensitivity of the system to timing variations.  It often requires the use of sophisticated software emulators and simulators.  Often specialized hardware is also required to debug or profile the system.
 
 \subsection{Primary Sources}
 
@@ -175,16 +177,24 @@ Table \ref{tab:vul_summary} gives a list of vulnerabilities found in the literat
 \caption{Summary of Vulnerabilities}
 \label{tab:vul_summary}
 \centering
-\begin{tabular}{ | p{5cm} | l | l | }
+\begin{tabular}{ | l | l | l | l | }
 \hline
- Vulnerability Description 		& References & Impact	\\ \hline
- Stack Smashing					& 15 & 100 				\\ \hline
- Cross Channel Scripting			& 3 & 100				\\ \hline
- Side Channel Attacks 			& 13 & 100 				\\ \hline
- Injection Attacks				& 5 & 100 				\\ \hline
- Insecure APIs 					& 7 & 100				\\ \hline
+ Vulnerability Type & Refs & CVSS Parameters & Score \\ \hline
+ Sys. Software Attack	& 3 &	\verb|AV:L/AC:H/Au:S/C:C/I:C/A:C| 	& 6		\\ \hline
+ App. Software Attack	& 4 &	\verb|AV:L/AC:M/Au:S/C:P/I:P/A:P|	& 4.1	\\ \hline
+ Side Channel Attack		& 3 &	\verb|AV:L/AC:H/Au:N/C:C/I:N/A:N|	& 4		\\ \hline
+ Cross Channel Attack	& 1 &	\verb|AV:N/AC:H/Au:S/C:P/I:P/A:P|	& 4.6	\\ \hline
+ Interface Attack		& 3	&	\verb|AV:L/AC:H/Au:N/C:N/I:C/A:C|	& 5.6	\\ \hline
+ Software Modification	& 5 &	\verb|AV:L/AC:H/Au:S/C:C/I:C/A:C|	& 6		\\ \hline
 \end{tabular}
 \end{table}
+
+
+
+
+
+
+
 
 \section{Conclusions}
 
@@ -194,6 +204,8 @@ Put conclusions here....
 \bibliography{embeddedsecurity}
 
 \pagebreak
+
+\end{document}
 
 \section{Notes}
 Secure design guidelines
@@ -325,5 +337,5 @@ IEEE Transactions on Very Large Scale Integration (VLSI) Systems
 
 
 
-\end{document}
+
 
