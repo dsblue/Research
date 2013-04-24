@@ -1,5 +1,5 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-\documentclass[final,conference,11pt]{IEEEtran}
+\documentclass[final,conference,10pt]{IEEEtran}
 %\documentclass[draftcls,onecolumn,conference,12pt]{IEEEtran}
 \usepackage{graphicx}
 \usepackage{mathtools}
@@ -269,15 +269,18 @@ Fifty seven (57) papers were discovered using the search methodology described i
 \end{table}
 
 \subsubsection{Security Model Checking}
+Models that represent algorithms and software specifications can be created by designers using formal logic.  If the models are complete then equivalence can be verified between the specification and the algorithm. Code can also be checked against the model to prove that it properly meets the specifications.  This type of checking is difficult due to the effort involved in creating and maintaining the formal models but it is necessary for high assurance software.  Such model checking is a heavily researched area of computer science.  
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+Software faults are discovered in the algorithmic models before they can affect actual systems.  Model checking can be a powerful tool against malicious attacks because these faults can easily lead to security vulnerabilities.  Models can be created for the entire system or of only critical subsystems such as encryption algorithms.  Communication protocols and other interfaces can be modelled and simulated "attacks" can be performed on the models.   \cite{Probabilistic Attack Scenarios to Evaluate Policies over Communication Protocols}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+Security models for embedded systems software (including specific time constraints and physical features) and attacks should be researched.
 
 \subsubsection{Encryption}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+Encryption is the standard software solution to ensuring confidentiality and often for providing integrity.  Embedded systems are highly susceptible to attacks on confidentiality of data because they tend to be small, mobile, and often physically accessible to attackers.  However, the resource limitations of embedded systems prevents the use of encryption for many applications. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+Technologies such as security coprocessors provide hardware solutions by providing specialized cryptographic accelerators for common algorithms such as DES and Elliptical Curve Cryptography (ECC).  ECC is particularly attractive to embedded systems because it requires fewer instructions than comparably secure algorithms.  
+
+More research is necessary to develop encryption techniques that are applicable to embedded systems.
 
 \subsubsection{Real-Time Security Monitoring}
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
