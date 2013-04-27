@@ -118,11 +118,11 @@ Network topologies are also an important research area for embedded systems.  Wi
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{topology}
+\includegraphics[width=3.5in]{topology}
 % where an .eps filename suffix will be assumed under latex, 
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
-\caption{bus topology image here}
+\caption{Examples of common bus topologies connecting two nodes, N1 and N2.  a) A pair of star networks connected via a pair of routers. b) A mesh network where every node can also act as a router. New routes can be formed dynamically if one node leaves the network.}
 \label{fig:topology}
 \end{figure}
 
@@ -207,15 +207,12 @@ Application code is another area of attack in embedded systems.  Exploits on app
 Attacks can be detected using static code analysis.  The expected number of instructions or clock cycles between specific checkpoints in the code can be determined at compile time and monitors (hardware or software) can ensure that the expected number of clock cycles or instructions were actually executed.  A discrepancy indicates that the code was modified.  Prevention of such attacks can be implemented via program and data encryption.  The program instructions can be encoded using an encryption scheme that ensures that modifications are detected.  The instructions are decoded by the processor at execution time.  Modification of the code results in invalid processor instructions. \cite{compiler-hardware} \cite{architectural-frameworks}
 
 \subsubsection{Side Channel Attacks}
-Side channel attacks are those that utilise interfaces to the device that are not intended for communication such as power supply, electromagnetic, or acoustic channels.  Many papers have shown that careful analysis of timing, electromagnetic emissions, or energy consumption can reveal the internal state of an embedded system. \cite{papers??} This can be exploited to discover key features of an embedded system such as encryption algorithms and even private keys.  Power analysis attacks are a very active area of research.  Power analysis attacks sample the instantaneous current flowing into the hardware (e.g. security co-processor containing an encryption private key) during various inputs.  The patterns formed in the power analysis can be used to guess the number of rounds used an TripleDES implementation, for example.  Also, differential analysis can be performed by creating a template signal that is based on an known state.  Comparisons are made to this template to determine the value of unknown states.  
+Side channel attacks are those that utilise interfaces to the device that are not intended for communication such as power supply, electromagnetic, or acoustic channels.  Many papers have shown that careful analysis of timing, electromagnetic emissions, or energy consumption can reveal the internal state of an embedded system. \cite{papers??} This can be exploited to discover key features of an embedded system such as encryption algorithms and even private keys.  Power analysis attacks are a very active area of research.  Power analysis attacks sample the instantaneous current flowing into the hardware (e.g. security co-processor containing an encryption private key) during various inputs.  The patterns formed in the power analysis can be used to guess the number of rounds used an TripleDES implementation, for example.  Also, differential analysis can be performed by creating a template signal that is based on an known state.  Comparisons are made to this template to determine the value of unknown states.  \figurename \ref{fig:side_chan} shows an example setup an attacker may use to reveal the cryptographic private key from a security processor.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{diffpower}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-\caption{side channel image here}
+\includegraphics[width=3.5in]{diffpower}
+\caption{Differential power analysis attack.  Several measurements of supply current are made while varying chip inputs.  The differences between the measurements can reveal clues about the internal state, including private security keys. }
 \label{fig:side_chan}
 \end{figure}
 
@@ -299,16 +296,13 @@ Software integrity refers to the level of confidence that data and code have not
 External hardware such as trusted platform modules (TPM) can be applied to embedded systems to enable digital signature verification on executed code.  This technology is used by PCs to ensure the integrity of the system BIOS and some operating systems also use it to verify critical code.  
 
 \subsubsection{Virtualization}
-Virtualization technologies enable software isolation by providing an abstraction layer around hardware resources.  At the desktop level this is usually a hypervisor or virtual machine that allows an OS to be installed to an abstraction of the underlying hardware.  Components such as the video card, sound card, hard drives, and network interfaces are all mediated via the virtual machine.  Modern processors even include special features efficiently separate virtual machine processes.
+Virtualization technologies enable software isolation by providing an abstraction layer around hardware resources.  At the desktop level this is usually a hypervisor or virtual machine that allows an OS to be installed to an abstraction of the underlying hardware, as shown in \figurename \ref{fig:virtual}.  Components such as the video card, sound card, hard drives, and network interfaces are all mediated via the virtual machine.  Modern processors even include special features efficiently separate virtual machine processes. 
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{virtual}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-\caption{Virtualization image here}
-\label{fig:monitor}
+\includegraphics[width=3.5in]{virtual}
+\caption{Two virtual machines on one computer can provide isolation between different services.  If one virtual machine OS is compromised the other is safe.}
+\label{fig:virtual}
 \end{figure}
 
 The ability to have a single machine running several virtual machines is that it enables isolation at a lower level than an operating system can.  A web server can be running on the same physical machine as a database server without the concern that a vulnerability in the web server, even at the OS level, will lead to a compromise of the database server.
