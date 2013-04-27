@@ -1,5 +1,5 @@
 %% sudo apt-get install texlive texlive-latex-extra texlive-math-extra texlive-science texlive-fonts-recommended texlive-publishers
-\documentclass[final,conference,10pt]{IEEEtran}
+\documentclass[final,conference,11pt]{IEEEtran}
 %\documentclass[draftcls,onecolumn,conference,12pt]{IEEEtran}
 \usepackage{graphicx}
 \usepackage{mathtools}
@@ -44,7 +44,8 @@ Email: ntp1@msstate.edu}}
 
 \begin{abstract}
 %\boldmath
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+Embedded system software as a class is very dynamic and expansive, both in reach of application and in variety of implementation.  However, there are some properties that make it particularly vulnerable to certain types of attacks.  The characteristics, and notably the constraints, on embedded systems cause challenges for protection of critical infrastructure, personal health, automotive, logistics, and many other systems integral to daily life. Research on these specific challenges is rapidly changing and not as mature as more general software security research.  This paper outlines the state of the literature regarding embedded software security and provides a list of mainstream computer security trends that should be researched in the context of embedded systems.
+
 \end{abstract}
 
 \section{Introduction} 
@@ -87,8 +88,6 @@ For many years high security was not seen as essential for these types of device
 \subsection{Wireless Sensor Networks}
 
 Wireless sensor networks (WSN) comprise a special class of embedded system that is defined by its connectivity.  WSN devices are low power, battery powered devices that are designed to take information from their environment, perform operations on data, optionally provide feedback into the environment, and communicate with other devices.  Typically, these devices form dynamic and adaptable (ad-hoc) networks among the various sensors and may perform distributed processing on the data as well.\cite{Singh2011}  WSNs are also notable for their high profile applications such as safety critical environmental monitoring, implantable health monitoring (mHealth), perimeter security and inventory tracking.\cite{Bojinov2010,Mahdavi-Hezavehi2013,Sahoo2012}  Distributed WSN topologies are very different from traditional computer networks, such as the Internet, which tend to centralize services to specific nodes. However, this paper discusses areas of software security research that, while not originally targeted at distributed designs, can increase the security of wireless sensor networks.
-
-\hl{[Example of embedded security breach]}
 
 \section{Methodology}
 The main goal of this study is to provide the reader with software security practices that have been reported by literature to apply well to embedded system software design and development.  However, there are several sub-goals that aid in meeting that objective.  
@@ -212,7 +211,7 @@ Side channel attacks are those that utilise interfaces to the device that are no
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.5in]{topology}
+\includegraphics[width=2.5in]{diffpower}
 % where an .eps filename suffix will be assumed under latex, 
 % and a .pdf suffix will be assumed for pdflatex; or what has been declared
 % via \DeclareGraphicsExtensions.
@@ -287,16 +286,6 @@ Many attacks can be detected by their side effects to the affected system.  Mali
 
 These types of monitoring approaches could also apply to embedded system software.  Software similar to a virus scanner could scan firmware for changes indicative of an attack.  This could be a much different signature than in a desktop system, so more research is necessary.  However, some work has been done on wireless area network (WAN) monitoring that is applicable to embedded systems. \cite{}
 
-\begin{figure}[!t]
-\centering
-\includegraphics[width=2.5in]{topology}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-\caption{bus topology image here}
-\label{fig:monitor}
-\end{figure}
-
 Embedded systems could be analysed for anomalies in behaviour by external or redundant systems.  Anomalies could manifest as behaviour that original specifications did not intend or could include checks for incorrect states, such as valves in the open and closed position at the same time or several neighbouring systems having drastically different times of temperatures. \cite{Master Failure Detection Protocol in Internal Synchronization Environment} 
 
 \subsubsection{Securing Data Channels}
@@ -310,22 +299,32 @@ Software integrity refers to the level of confidence that data and code have not
 External hardware such as trusted platform modules (TPM) can be applied to embedded systems to enable digital signature verification on executed code.  This technology is used by PCs to ensure the integrity of the system BIOS and some operating systems also use it to verify critical code.  
 
 \subsubsection{Virtualization}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+Virtualization technologies enable software isolation by providing an abstraction layer around hardware resources.  At the desktop level this is usually a hypervisor or virtual machine that allows an OS to be installed to an abstraction of the underlying hardware.  Components such as the video card, sound card, hard drives, and network interfaces are all mediated via the virtual machine.  Modern processors even include special features efficiently separate virtual machine processes.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{virtual}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+\caption{Virtualization image here}
+\label{fig:monitor}
+\end{figure}
+
+The ability to have a single machine running several virtual machines is that it enables isolation at a lower level than an operating system can.  A web server can be running on the same physical machine as a database server without the concern that a vulnerability in the web server, even at the OS level, will lead to a compromise of the database server.
+
+Embedded systems could learn from this approach.  Embedded systems have traditionally been comprised of several separate digital devices that provide specialized functions such as signal conditioning, communications, and data processing.  Newer systems use a single processor that consolidates this functionality.  Software should be designed such that systems are isolated a well as possible and embedded virtualization could enable that.  
 
 \subsubsection{Other}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+This section describes other security trends that could apply to embedded systems.  High level programming languages such as Java or even interpreted languages such as Python could be used in embedded systems.  High performance and driver software still needs to be implemented in low level languages like C or assembly. However, high level languages tend to be less error prone and more easily prevent attacks on memory.  Also, many mobile systems use mobile tracking and detection systems to monitor the position of assets.  Miniaturization of GPS and RFID technology allows this to be done for embedded systems as well. 
 
 \section{Conclusions}
 
-Put conclusions here....
+There are many areas where embedded software security falls short.  Many of the attacks that are performed on embedded systems are very different from the types of attacks performed on traditional infrastructure systems.  However, the learning from decades of software security research may apply to these new attacks.  
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+This paper shows that there is ongoing research on the security concerns specific to embedded software.  Many new attacks are defined and mitigation strategies discussed.  Side channel attacks, such as power and timing analysis, are novel forms of attack on embedded systems and processing resource constraints restrict the mitigation options. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis laoreet hendrerit luctus. Suspendisse eu libero arcu. Phasellus eu sem nec lectus semper pharetra vel fermentum nisi. Mauris sit amet turpis neque. Etiam urna nunc, viverra et dictum ac, porttitor eget elit. Aliquam rhoncus tempor sem, vitae dapibus lacus consequat dictum. Donec sit amet quam felis, at ornare augue. Fusce pretium tempor felis, imperdiet iaculis lacus egestas vel. Duis faucibus suscipit lacus, id iaculis augue rhoncus a. Cras sed nulla in arcu sodales euismod.
+It is also shown that there are many areas where new research must be done to examine the ways that traditional security techniques can be successfully adapted to embedded software. Areas such as encryption, modelling and virtualization are all staples of software security literature but need to be re-examined for embedded systems.
 
 \bibliographystyle{IEEEtran} % Bibliography style file, IEEEtran.bst
 \bibliography{embeddedsecurity}
