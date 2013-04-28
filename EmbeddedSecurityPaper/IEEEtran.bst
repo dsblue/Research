@@ -1966,7 +1966,7 @@ FUNCTION {article}
   format.pages output
   format.date "year" output.warn
   format.note output
-  format.url output
+%  format.url output
   fin.entry
   if.url.std.interword.spacing
 }
